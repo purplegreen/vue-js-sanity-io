@@ -16,8 +16,7 @@
             <h4>{{ post.author.name }}</h4>
             <h4>{{ post.publishedAt }}</h4>
             <h6 v-for="reference in post.categories" v-bind:key="reference.id">{{ reference._type }}</h6>
-            <h4 v-for="blockContent in post.body" v-bind:key="blockContent.id">{{ blockContent }}</h4>
-            <block-content :blocks="blocks" />
+            <block-content :blocks="post.body" />
           </div>
         </router-link>
       </li>
