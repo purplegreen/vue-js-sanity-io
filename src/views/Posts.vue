@@ -5,18 +5,19 @@
     <div v-if="error" class="error">{{ error }}</div>let's post
     <ul class="list">
       <li v-for="post in posts" class="list__item" :key="post._id">
-        <router-link :to="{name: 'post', params: {id: post._id}}">
-          <h2>{{post.title}}</h2>
+        <router-link :to="{ name: 'post', params: { id: post._id } }">
+          <h2>{{ post.title }}</h2>
           <img
             v-if="post.mainImage"
             class="mainImage"
             :src="imageUrlFor(post.mainImage).ignoreImageParams()"
           />
           <div>
-            <h4>{{post.author.name}}</h4>
-            <h4>{{post.publishedAt}}</h4>
-            <h6>{{post.categories._type}}</h6>
-            <h6>{{ post.body }}</h6>
+            <h4>{{ post.author.name }}</h4>
+            <h4>{{ post.publishedAt }}</h4>
+            <h6 v-for="reference in post.categories" v-bind:key="reference.id">{{ reference._type }}</h6>
+            <h4 v-for="blockContent in post.body" v-bind:key="blockContent.id">{{ blockContent }}</h4>
+            <block-content :blocks="blocks" />
           </div>
         </router-link>
       </li>
@@ -27,6 +28,7 @@
 <script>
 import sanity from "../sanity";
 import imageUrlBuilder from "@sanity/image-url";
+import BlockContent from "sanity-blocks-vue-component";
 
 const imageBuilder = imageUrlBuilder(sanity);
 
@@ -43,10 +45,14 @@ const query = `*[_type == "post"] {
 
 export default {
   name: "Posts",
+  components: {
+    BlockContent
+  },
   data() {
     return {
       loading: true,
-      posts: []
+      posts: [],
+      blocks: []
     };
   },
   created() {
