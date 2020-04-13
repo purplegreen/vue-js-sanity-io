@@ -6,15 +6,17 @@
 
     <ul class="list">
       <li v-for="post in posts" class="list__item" :key="post._id">
-        <article>
+        <section class="card">
           <router-link :to="{ name: 'post', params: { id: post._id } }">
-            <h2 class="theTitle">{{ post.title }}</h2>
-            <FitText class="fitty" v-html="texts" />
-            <img
-              v-if="post.mainImage"
-              class="mainImage"
-              :src="imageUrlFor(post.mainImage).ignoreImageParams()"
-            />
+            <article>
+              <!-- <h2 class="theTitle">{{ post.title }}</h2> -->
+              <FitText class="theTitle" v-html="post.title" />
+              <img
+                v-if="post.mainImage"
+                class="mainImage"
+                :src="imageUrlFor(post.mainImage).ignoreImageParams()"
+              />
+            </article>
             <div>
               <h4>{{ post.author.name }}</h4>
               <h4>{{ post.publishedAt }}</h4>
@@ -27,7 +29,7 @@
               <block-content :blocks="post.body" />
             </div>
           </router-link>
-        </article>
+        </section>
       </li>
     </ul>
   </main>
@@ -98,6 +100,7 @@ export default {
         posts => {
           this.loading = false;
           this.posts = posts;
+          this.texts = this.post.title;
         },
         error => {
           this.error = error;
@@ -123,13 +126,17 @@ main {
   justify-content: space-around;
 }
 
-article {
+.card {
   position: relative;
-  border: 1px solid blue;
+  border: 1px dotted blue;
   width: 33vw;
   flex-wrap: wrap;
-  padding: 20px;
-  margin: 30px;
+  margin: 20px;
+}
+
+article {
+  position: relative;
+  flex-wrap: wrap;
 }
 
 .mainImage {
@@ -141,7 +148,11 @@ article {
   text-align: center;
   font-size: 7vw;
   overflow: hidden;
+  top: 50%;
+  left: 50%;
   position: absolute;
-  top: 25px;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 </style>
