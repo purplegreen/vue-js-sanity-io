@@ -1,33 +1,43 @@
 <template>
-  <div>
+  <main>
     <div class="loading" v-if="loading">Loading...</div>
 
-    <div v-if="error" class="error">{{ error }}</div>let's post
+    <div v-if="error" class="error">{{ error }}</div>
+
     <ul class="list">
       <li v-for="post in posts" class="list__item" :key="post._id">
-        <router-link :to="{ name: 'post', params: { id: post._id } }">
-          <h2>{{ post.title }}</h2>
-          <img
-            v-if="post.mainImage"
-            class="mainImage"
-            :src="imageUrlFor(post.mainImage).ignoreImageParams()"
-          />
-          <div>
-            <h4>{{ post.author.name }}</h4>
-            <h4>{{ post.publishedAt }}</h4>
-            <h6 v-for="reference in post.categories" v-bind:key="reference.id">{{ reference._type }}</h6>
-            <block-content :blocks="post.body" />
-          </div>
-        </router-link>
+        <article>
+          <router-link :to="{ name: 'post', params: { id: post._id } }">
+            <h2 class="theTitle">{{ post.title }}</h2>
+            <FitText class="fitty" v-html="texts" />
+            <img
+              v-if="post.mainImage"
+              class="mainImage"
+              :src="imageUrlFor(post.mainImage).ignoreImageParams()"
+            />
+            <div>
+              <h4>{{ post.author.name }}</h4>
+              <h4>{{ post.publishedAt }}</h4>
+              <h6
+                v-for="reference in post.categories"
+                v-bind:key="reference.id"
+              >
+                {{ reference._type }}
+              </h6>
+              <block-content :blocks="post.body" />
+            </div>
+          </router-link>
+        </article>
       </li>
     </ul>
-  </div>
+  </main>
 </template>
 
 <script>
 import sanity from "../sanity";
 import imageUrlBuilder from "@sanity/image-url";
 import BlockContent from "sanity-blocks-vue-component";
+import FitText from "@/components/FitText";
 
 const imageBuilder = imageUrlBuilder(sanity);
 
@@ -45,13 +55,15 @@ const query = `*[_type == "post"] {
 export default {
   name: "Posts",
   components: {
-    BlockContent
+    BlockContent,
+    FitText
   },
   data() {
     return {
       loading: true,
       posts: [],
-      blocks: []
+      blocks: [],
+      text: ""
     };
   },
   created() {
@@ -59,6 +71,21 @@ export default {
   },
   watch: {
     $route: "fetchData"
+  },
+  mounted() {
+    const titles = ["{{ post.title }}"];
+
+    let idx = titles.length;
+
+    setInterval(() => {
+      --idx;
+
+      if (idx < 0) {
+        idx = titles.length - 1;
+      }
+
+      this.texts = titles[idx];
+    });
   },
   methods: {
     imageUrlFor(source) {
@@ -82,17 +109,39 @@ export default {
 </script>
 
 <style scoped>
-.list {
-  margin: 1rem;
-}
-
-.movies-list__directed-by {
+main {
   display: flex;
   font-size: 1rem;
 }
 
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin: 1rem;
+  width: 100vw;
+  justify-content: space-around;
+}
+
+article {
+  position: relative;
+  border: 1px solid blue;
+  width: 33vw;
+  flex-wrap: wrap;
+  padding: 20px;
+  margin: 30px;
+}
+
 .mainImage {
-  width: 30vw;
+  width: 100%;
   height: auto;
+}
+
+.theTitle {
+  text-align: center;
+  font-size: 7vw;
+  overflow: hidden;
+  position: absolute;
+  top: 25px;
 }
 </style>
