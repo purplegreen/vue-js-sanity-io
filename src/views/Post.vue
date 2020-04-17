@@ -77,20 +77,21 @@ export default {
   methods: {
     // imageUrlFor(source) {
     //   return imageBuilder.image(source);
-  },
-  fetchData() {
-    this.error = this.post = null;
-    this.loading = true;
-    sanity.fetch(query, { id: this.id }).then(
-      post => {
-        this.loading = false;
-        this.post = post;
-        this.texts = this.post.title;
-      },
-      error => {
-        this.error = error;
-      }
-    );
+    // },
+    fetchData() {
+      this.error = this.post = null;
+      this.loading = true;
+      sanity.fetch(query, { id: this.id }).then(
+        post => {
+          this.loading = false;
+          this.post = post;
+          this.texts = this.post.title;
+        },
+        error => {
+          this.error = error;
+        }
+      );
+    }
   }
 };
 </script>

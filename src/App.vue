@@ -1,22 +1,11 @@
 <template>
   <div id="app">
     <nav>
-      <router-link to="/works">Works</router-link>
-      <router-link to="/specials">Specials</router-link>
+      <router-link to="/about">About</router-link>
       <router-link to="/posts">Posts</router-link>
     </nav>
     <router-view />
-    <footer>
-      <a href="http://sanity.io">
-        <img class="logo" src="./assets/sanity-logo.svg" />
-      </a>
-      +
-      <a href="https://vuejs.org">
-        <img class="logo" src="./assets/vue-logo.svg" />
-      </a>
-      =
-      💖
-    </footer>
+    <footer>...</footer>
   </div>
 </template>
 
@@ -55,14 +44,13 @@ nav {
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #333;
   font-size: 1rem;
   height: 3.5rem;
   justify-content: flex-start;
 }
 
 nav a {
-  color: #fff;
+  color: black;
   text-decoration: none;
   text-align: center;
   padding: 0 1rem;

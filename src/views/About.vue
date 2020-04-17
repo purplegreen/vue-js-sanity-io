@@ -1,38 +1,37 @@
 <template>
   <div>
     <div class="loading" v-if="loading">Loading...</div>
-
-    <div v-if="error" class="error">{{ error }}</div>I'm here too
-    <ul class="list">
-      <li v-for="special in special" class="list__item" :key="special._id">
-        <router-link :to="{name: 'special', params: {id: special._id}}">
-          <img v-if="special.image" :src="imageUrlFor( special.image ).width(240)" />
-          <h3>{{special.name}}</h3>
-        </router-link>
-      </li>
-    </ul>
+    <div v-if="error" class="error">{{ error }}</div>
+    <div>
+      <h2 class="aTitle">{{ about.title }}</h2>
+      <block-content :blocks="about.body" />
+    </div>
   </div>
 </template>
 
 <script>
 import sanity from "../sanity";
 import imageUrlBuilder from "@sanity/image-url";
+import BlockContent from "sanity-blocks-vue-component";
 
 const imageBuilder = imageUrlBuilder(sanity);
 
-const query = `*[_type == "special"] {
+const query = `*[_type == "about"] {
   _id,
-  name,
-  image
-}[0...50]
-`;
+  title,
+  mainImage,
+  body
+}[0]`;
 
 export default {
-  name: "Specials",
+  name: "About",
+  components: {
+    BlockContent
+  },
   data() {
     return {
       loading: true,
-      special: []
+      blocks: []
     };
   },
   created() {
@@ -46,12 +45,12 @@ export default {
       return imageBuilder.image(source);
     },
     fetchData() {
-      this.error = this.post = null;
+      this.error = this.about = null;
       this.loading = true;
       sanity.fetch(query).then(
-        specials => {
+        about => {
           this.loading = false;
-          this.specials = specials;
+          this.about = about;
         },
         error => {
           this.error = error;
@@ -63,7 +62,8 @@ export default {
 </script>
 
 <style scoped>
-.list {
-  margin: 1rem;
+main {
+  display: flex;
+  font-size: 1rem;
 }
 </style>
