@@ -50,7 +50,7 @@ export default new Router({
       component: Posts
     },
     {
-      path: "/posts/:id",
+      path: "/post/:id",
       name: "post",
       component: () =>
         import(/* webpackChunkName: "post" */ "./views/Post.vue"),

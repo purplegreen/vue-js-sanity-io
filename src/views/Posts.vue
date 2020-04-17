@@ -100,7 +100,7 @@ export default {
         posts => {
           this.loading = false;
           this.posts = posts;
-          this.texts = this.post.title;
+          // this.texts = this.post.title;
         },
         error => {
           this.error = error;
