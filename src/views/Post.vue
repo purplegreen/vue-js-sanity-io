@@ -6,6 +6,11 @@
       <div>
         <h1>{{ post.title }}</h1>ohohkkkk
       </div>
+      <img
+        v-if="post.mainImage"
+        class="mainImage"
+        :src="imageUrlFor(post.mainImage).ignoreImageParams()"
+      />
 
       <div class="content">
         <FitText class="theTitle" v-html="post.title" />hello
@@ -17,11 +22,11 @@
 
 <script>
 import sanity from "../sanity";
-// import imageUrlBuilder from "@sanity/image-url";
+import imageUrlBuilder from "@sanity/image-url";
 import BlockContent from "sanity-blocks-vue-component";
 import FitText from "@/components/FitText";
 
-// const imageBuilder = imageUrlBuilder(sanity);
+const imageBuilder = imageUrlBuilder(sanity);
 
 const query = `*[_type == "post" && _id == $id] {
   _id,
@@ -75,9 +80,9 @@ export default {
     });
   },
   methods: {
-    // imageUrlFor(source) {
-    //   return imageBuilder.image(source);
-    // },
+    imageUrlFor(source) {
+      return imageBuilder.image(source);
+    },
     fetchData() {
       this.error = this.post = null;
       this.loading = true;

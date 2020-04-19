@@ -11,11 +11,12 @@
             <article>
               <!-- <h2 class="theTitle">{{ post.title }}</h2> -->
               <FitText class="theTitle" v-html="post.title" />
-              <img
-                v-if="post.mainImage"
+              <BaseIcon class="mainImage" name="hello" />
+              <!-- <img
+                v-if="post.posterImage"
                 class="mainImage"
-                :src="imageUrlFor(post.mainImage).ignoreImageParams()"
-              />
+                :src="imageUrlFor(post.posterImage).ignoreImageParams()"
+              />-->
             </article>
             <div>
               <h4>{{ post.author.name }}</h4>
@@ -23,9 +24,7 @@
               <h6
                 v-for="reference in post.categories"
                 v-bind:key="reference.id"
-              >
-                {{ reference._type }}
-              </h6>
+              >{{ reference._type }}</h6>
               <block-content :blocks="post.body" />
             </div>
           </router-link>
@@ -46,7 +45,7 @@ const imageBuilder = imageUrlBuilder(sanity);
 const query = `*[_type == "post"] {
   _id,
   title,
-  mainImage,
+  posterImage,
   author,
   reference,
   publishedAt,
@@ -128,8 +127,8 @@ main {
 
 .card {
   position: relative;
-  border: 1px dotted blue;
-  width: 33vw;
+  border: 3px dotted blue;
+  width: 100vw;
   flex-wrap: wrap;
   margin: 20px;
 }
@@ -144,9 +143,14 @@ article {
   height: auto;
 }
 
+.backImg {
+  width: 100vw;
+  height: 300px;
+}
+
 .theTitle {
   text-align: center;
-  font-size: 7vw;
+  font-size: 12vw;
   overflow: hidden;
   top: 50%;
   left: 50%;
