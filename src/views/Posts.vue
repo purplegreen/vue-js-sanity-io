@@ -9,14 +9,8 @@
         <section class="card">
           <router-link :to="{ name: 'post', params: { id: post._id } }">
             <article>
-              <!-- <h2 class="theTitle">{{ post.title }}</h2> -->
               <FitText class="theTitle" v-html="post.title" />
               <BaseIcon class="mainImage" name="hello" />
-              <!-- <img
-                v-if="post.posterImage"
-                class="mainImage"
-                :src="imageUrlFor(post.posterImage).ignoreImageParams()"
-              />-->
             </article>
             <div :style="{ 'background-color': favoriteColor.hex }">hello!</div>
             <div>
