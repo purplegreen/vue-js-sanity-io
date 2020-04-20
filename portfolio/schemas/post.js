@@ -54,6 +54,11 @@ export default {
       name: "body",
       title: "Body",
       type: "block-content"
+    },
+    {
+      name: "favoriteColor",
+      title: "Favorite color",
+      type: "color"
     }
   ],
 

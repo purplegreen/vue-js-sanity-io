@@ -18,6 +18,7 @@
                 :src="imageUrlFor(post.posterImage).ignoreImageParams()"
               />-->
             </article>
+            <div :style="{ 'background-color': favoriteColor.hex }">hello!</div>
             <div>
               <h4>{{ post.author.name }}</h4>
               <h4>{{ post.publishedAt }}</h4>
@@ -148,6 +149,11 @@ article {
   height: 300px;
 }
 
+.input-color {
+  width: 100vw;
+  height: 300px;
+}
+
 .theTitle {
   text-align: center;
   font-size: 12vw;
@@ -158,5 +164,9 @@ article {
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+}
+
+.color-input {
+  background-color: favoritecolor;
 }
 </style>
