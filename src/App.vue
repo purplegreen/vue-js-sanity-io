@@ -47,6 +47,7 @@ nav {
   font-size: 1rem;
   height: 3.5rem;
   justify-content: flex-start;
+  z-index: 9;
 }
 
 nav a {
@@ -55,6 +56,9 @@ nav a {
   text-align: center;
   padding: 0 1rem;
   font-weight: 700;
+  background-color: white;
+  padding: 7px 14px;
+  margin: 3px;
 }
 </style>
 

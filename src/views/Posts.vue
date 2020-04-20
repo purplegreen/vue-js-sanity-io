@@ -9,11 +9,13 @@
         <section class="card">
           <router-link :to="{ name: 'post', params: { id: post._id } }">
             <article>
-              <FitText class="theTitle" v-html="post.title" />
-              <BaseIcon class="mainImage" name="hello" />
+              <div class="picker" :style="{ 'background-color': post.favoriteColor.hex }">
+                <FitText class="theTitle" v-html="post.title" />
+                <BaseIcon class="pattern" name="path" />
+              </div>
             </article>
-            <div :style="{ 'background-color': post.favoriteColor.hex }">hello!</div>
-            <div>
+
+            <div class="content-wrap">
               <h4>{{ post.author.name }}</h4>
               <h4>{{ post.publishedAt }}</h4>
               <h6
@@ -123,7 +125,10 @@ main {
 
 .card {
   position: relative;
-  border: 3px dotted blue;
+  border-radius: 12px;
+  -webkit-box-shadow: 0px 10px 13px -7px #000000,
+    5px 5px 15px 5px rgba(0, 0, 0, 0);
+  box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
   width: 100vw;
   flex-wrap: wrap;
   margin: 20px;
@@ -134,25 +139,27 @@ article {
   flex-wrap: wrap;
 }
 
-.mainImage {
-  width: 100%;
+.picker {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+  width: 90vw;
+  height: 300px;
+  overflow: hidden;
+}
+
+.pattern {
+  width: 100vw;
   height: auto;
-}
-
-.backImg {
-  width: 100vw;
-  height: 300px;
-}
-
-.input-color {
-  width: 100vw;
-  height: 300px;
+  text-align: center;
+  margin: auto;
 }
 
 .theTitle {
+  color: white;
   text-align: center;
-  font-size: 12vw;
-  overflow: hidden;
   top: 50%;
   left: 50%;
   position: absolute;
@@ -161,7 +168,7 @@ article {
   transform: translate(-50%, -50%);
 }
 
-.color-input {
-  background-color: favoritecolor;
+.content-wrap {
+  margin: 20px;
 }
 </style>

@@ -118,7 +118,7 @@ main {
 
 .card {
   position: relative;
-  border: 1px dotted blue;
+  border-radius: 12px;
   width: 33vw;
   flex-wrap: wrap;
   margin: 20px;
