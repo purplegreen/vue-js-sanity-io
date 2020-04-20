@@ -37,7 +37,7 @@ import FitText from "@/components/FitText";
 
 const imageBuilder = imageUrlBuilder(sanity);
 
-const query = `*[_type == "post"] {
+const query = `*[_type == "post" ] {
   _id,
   title,
   posterImage,
@@ -45,7 +45,8 @@ const query = `*[_type == "post"] {
   reference,
   publishedAt,
   categories,
-  body
+  body,
+  favoriteColor
 }[0...50]`;
 
 export default {
