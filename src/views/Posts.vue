@@ -12,7 +12,7 @@
               <FitText class="theTitle" v-html="post.title" />
               <BaseIcon class="mainImage" name="hello" />
             </article>
-            <div :style="{ 'background-color': favoriteColor.hex }">hello!</div>
+            <div :style="{ 'background-color': post.favoriteColor.hex }">hello!</div>
             <div>
               <h4>{{ post.author.name }}</h4>
               <h4>{{ post.publishedAt }}</h4>
