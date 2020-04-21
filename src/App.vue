@@ -1,9 +1,14 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/about">About</router-link>
-      <router-link to="/posts">Posts</router-link>
-    </nav>
+    <div class="wrap-nav">
+      <nav>
+        <router-link to="/about">About</router-link>
+      </nav>
+
+      <h1>
+        <router-link to="/posts">DEHLIX</router-link>
+      </h1>
+    </div>
     <router-view />
     <footer>...</footer>
   </div>
@@ -37,17 +42,24 @@ footer img {
   width: auto;
 }
 
-nav {
+.wrap-nav {
   position: fixed;
-  display: flex;
-  align-items: center;
   top: 0;
   left: 0;
-  width: 100%;
+  right: 0;
+  display: grid;
+  grid-template-columns: auto auto;
+  z-index: 9;
+  box-sizing: border-box;
+}
+
+nav {
+  grid-column-start: 1;
+  display: flex;
+  align-items: center;
   font-size: 1rem;
   height: 3.5rem;
   justify-content: flex-start;
-  z-index: 9;
 }
 
 nav a {
@@ -56,6 +68,17 @@ nav a {
   text-align: center;
   padding: 0 1rem;
   font-weight: 700;
+  background-color: white;
+  padding: 7px 14px;
+  margin: 3px;
+}
+
+h1,
+h1 a {
+  grid-column-start: 2;
+  justify-self: end;
+  text-decoration: none;
+  color: black;
   background-color: white;
   padding: 7px 14px;
   margin: 3px;

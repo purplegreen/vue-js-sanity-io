@@ -17,7 +17,11 @@ export default {
 <style scoped>
 .icon {
   width: 100vw;
-  height: 250px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 /* 
 .icon-colors {

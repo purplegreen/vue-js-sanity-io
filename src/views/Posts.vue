@@ -11,17 +11,15 @@
             <article>
               <div class="picker" :style="{ 'background-color': post.favoriteColor.hex }">
                 <FitText class="theTitle" v-html="post.title" />
-                <BaseIcon class="pattern" name="path" />
+                <BaseIcon class="pattern" name="shade" />
               </div>
             </article>
 
             <div class="content-wrap">
-              <h4>{{ post.author.name }}</h4>
-              <h4>{{ post.publishedAt }}</h4>
-              <h6
+              <h4
                 v-for="reference in post.categories"
                 v-bind:key="reference.id"
-              >{{ reference._type }}</h6>
+              >{{ reference._type }}</h4>
               <block-content :blocks="post.body" />
             </div>
           </router-link>
@@ -129,7 +127,7 @@ main {
   -webkit-box-shadow: 0px 10px 13px -7px #000000,
     5px 5px 15px 5px rgba(0, 0, 0, 0);
   box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
-  width: 100vw;
+  width: 90vw;
   flex-wrap: wrap;
   margin: 20px;
 }
@@ -144,7 +142,7 @@ article {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 20px;
+  margin: 0px;
   width: 90vw;
   height: 300px;
   overflow: hidden;
@@ -155,6 +153,22 @@ article {
   height: auto;
   text-align: center;
   margin: auto;
+  animation: pulse 5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    background-color: hsla(165, 100%, 50%, 0.2);
+  }
+  30% {
+    background-color: hsla(300, 100%, 50, 0.2);
+  }
+  60% {
+    background-color: hsla(345, 100%, 50%, 0.4);
+  }
+  100% {
+    background-color: hsla(195, 100%, 50%, 0.2);
+  }
 }
 
 .theTitle {

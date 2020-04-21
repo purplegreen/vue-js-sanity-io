@@ -12,17 +12,6 @@ export default new Router({
     {
       path: "/",
       name: "index",
-      component: About
-    },
-    {
-      path: "/about",
-      name: "about",
-      component: () =>
-        import(/* webpackChunkName: "about" */ "./views/About.vue")
-    },
-    {
-      path: "/",
-      name: "index",
       component: Posts
     },
     {
@@ -36,6 +25,17 @@ export default new Router({
       component: () =>
         import(/* webpackChunkName: "post" */ "./views/Post.vue"),
       props: route => ({ id: route.params.id })
+    },
+    {
+      path: "/",
+      name: "index",
+      component: About
+    },
+    {
+      path: "/about",
+      name: "about",
+      component: () =>
+        import(/* webpackChunkName: "about" */ "./views/About.vue")
     }
   ]
 });
