@@ -16,9 +16,11 @@
             </article>
 
             <div class="content-wrap">
-              <h4 v-for="category in post.categories" v-bind:key="category.id">{{ post.category }}</h4>
-              {{ post.reference }}
-              {{ reference._type }}
+              <h4 v-for="category in post.categories" v-bind:key="category._id">{{ category.title }}</h4>
+              <h4
+                v-for="category in post.categories"
+                v-bind:key="category._id"
+              >{{ category.description }}</h4>
               <block-content :blocks="post.body" />
             </div>
           </router-link>
