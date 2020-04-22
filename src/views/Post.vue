@@ -1,19 +1,21 @@
 <template>
   <div class="post">
     <div class="loading" v-if="loading">Loading...</div>
-    <div v-if="error" class="error">{{ error }}</div>HELLO There
+    <div v-if="error" class="error">{{ error }}</div>
     <div v-if="post">
-      <div>
-        <h1>{{ post.title }}</h1>ohohkkkk
+      <div class="picker" :style="{ 'background-color': post.favoriteColor.hex }">
+        <a :href="post.imageUrl" class="theTitle" target="_blank">
+          <FitText v-html="post.imageUrl" />
+        </a>
+        <BaseIcon class="pattern" name="shade" />
       </div>
       <img
         v-if="post.mainImage"
         class="mainImage"
         :src="imageUrlFor(post.mainImage).ignoreImageParams()"
       />
-
-      <div class="content">
-        <FitText class="theTitle" v-html="post.title" />hello
+      <div class="card">
+        <h4>{{ post.title }}</h4>
         <block-content :blocks="post.body" />
       </div>
     </div>
@@ -36,7 +38,9 @@ const query = `*[_type == "post" && _id == $id] {
   reference,
   publishedAt,
   categories,
-  body
+  body,
+  favoriteColor,
+  imageUrl
 }[0]`;
 
 export default {
@@ -119,8 +123,13 @@ main {
 .card {
   position: relative;
   border-radius: 12px;
-  width: 33vw;
+  -webkit-box-shadow: 0px 10px 13px -7px #000000,
+    5px 5px 15px 5px rgba(0, 0, 0, 0);
+  box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+  width: 90vw;
+  max-width: 450px;
   flex-wrap: wrap;
+  padding: 20px;
   margin: 20px;
 }
 
@@ -132,6 +141,40 @@ article {
 .mainImage {
   width: 100%;
   height: auto;
+}
+
+.picker {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0px;
+  width: 100vw;
+  height: 400px;
+  overflow: hidden;
+}
+
+.pattern {
+  width: 100vw;
+  height: 400px;
+  text-align: center;
+  margin: auto;
+  animation: pulse 5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    background-color: hsla(165, 100%, 50%, 0.2);
+  }
+  30% {
+    background-color: hsla(300, 100%, 50, 0.2);
+  }
+  60% {
+    background-color: hsla(345, 100%, 50%, 0.4);
+  }
+  100% {
+    background-color: hsla(195, 100%, 50%, 0.2);
+  }
 }
 
 .theTitle {

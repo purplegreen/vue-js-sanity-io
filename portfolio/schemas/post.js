@@ -32,6 +32,15 @@ export default {
       }
     },
     {
+      title: "Image URL",
+      name: "imageUrl",
+      type: "url",
+      validation: Rule =>
+        Rule.uri({
+          scheme: ["http", "https", "www"]
+        })
+    },
+    {
       name: "posterImage",
       title: "Poster image",
       type: "image",

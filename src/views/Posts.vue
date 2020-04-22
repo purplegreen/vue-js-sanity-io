@@ -3,7 +3,7 @@
     <div class="loading" v-if="loading">Loading...</div>
 
     <div v-if="error" class="error">{{ error }}</div>
-
+    <div class="top">digital design</div>
     <ul class="list">
       <li v-for="post in posts" class="list__item" :key="post._id">
         <section class="card">
@@ -16,10 +16,9 @@
             </article>
 
             <div class="content-wrap">
-              <h4
-                v-for="reference in post.categories"
-                v-bind:key="reference.id"
-              >{{ reference._type }}</h4>
+              <h4 v-for="category in post.categories" v-bind:key="category.id">{{ post.category }}</h4>
+              {{ post.reference }}
+              {{ reference._type }}
               <block-content :blocks="post.body" />
             </div>
           </router-link>
@@ -109,7 +108,23 @@ export default {
 <style scoped>
 main {
   display: flex;
+  flex-direction: column;
   font-size: 1rem;
+}
+
+.top {
+  width: 100vw;
+  display: block;
+  position: relative;
+  text-align: center;
+  font-size: 4.7em;
+  background: -webkit-linear-gradient(mediumslateblue, #8ca369);
+  opacity: 0.3;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 100;
+  padding-bottom: 32vh;
+  padding-top: 32vh;
 }
 
 .list {
