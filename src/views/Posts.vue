@@ -45,7 +45,10 @@ const query = `*[_type == "post" ] {
   author,
   reference,
   publishedAt,
-  categories,
+  categories[{
+  title,
+  description
+}],
   body,
   favoriteColor
 }[0...50]`;
