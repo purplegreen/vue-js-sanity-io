@@ -46,6 +46,7 @@ const query = `*[_type == "post" ] {
   reference,
   publishedAt,
   categories[{
+   _id, 
   title,
   description
 }],
