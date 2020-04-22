@@ -38,18 +38,19 @@ import FitText from "@/components/FitText";
 
 const imageBuilder = imageUrlBuilder(sanity);
 
-const query = `*[_type == "post" ] {
+const query = `*[_type == "post" ] 
+{
   _id,
   title,
   posterImage,
   author,
   reference,
   publishedAt,
-  categories[{
-   _id, 
-  title,
-  description
-}],
+  "categories": categories[]->{
+    _id
+    description
+    title
+  },
   body,
   favoriteColor
 }[0...50]`;
