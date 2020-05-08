@@ -3,7 +3,33 @@
     <div class="loading" v-if="loading">Loading...</div>
 
     <div v-if="error" class="error">{{ error }}</div>
-    <div class="top">digital design</div>
+
+    <div class="wrap-top">
+      <div class="wrap-woo">
+        <BackWoo class="back-woow" />
+      </div>
+
+      <div class="top-anim">
+        <div class="box-one">
+          <p id="d0">d</p>
+          <p id="i">i</p>
+          <p id="g">g</p>
+          <p id="i">i</p>
+          <p id="t">t</p>
+          <p id="a">a</p>
+          <p id="l">l</p>
+        </div>
+        <div class="box-two">
+          <p id="d">d</p>
+          <p id="e">e</p>
+          <p id="s">s</p>
+          <p id="i">i</p>
+          <p id="g">g</p>
+          <p id="n">n</p>
+        </div>
+      </div>
+    </div>
+
     <ul class="list">
       <li v-for="post in posts" class="list__item" :key="post._id">
         <section class="card">
@@ -16,12 +42,12 @@
             </article>
 
             <div class="content-wrap">
-              <h4 v-for="category in post.categories" v-bind:key="category._id">{{ category.title }}</h4>
-              <h4
+              <h3
+                class="cat-list"
                 v-for="category in post.categories"
                 v-bind:key="category._id"
-              >{{ category.description }}</h4>
-              <block-content :blocks="post.body" />
+              >{{ category.title }} |</h3>
+              <!-- <block-content :blocks="post.body" /> -->
             </div>
           </router-link>
         </section>
@@ -33,8 +59,9 @@
 <script>
 import sanity from "../sanity";
 import imageUrlBuilder from "@sanity/image-url";
-import BlockContent from "sanity-blocks-vue-component";
+// import BlockContent from "sanity-blocks-vue-component";
 import FitText from "@/components/FitText";
+import BackWoo from "@/components/BackWoo";
 
 const imageBuilder = imageUrlBuilder(sanity);
 
@@ -47,8 +74,8 @@ const query = `*[_type == "post" ]
   reference,
   publishedAt,
   "categories": categories[]->{
-    _id
-    description
+    _id,
+    description,
     title
   },
   body,
@@ -58,8 +85,9 @@ const query = `*[_type == "post" ]
 export default {
   name: "Posts",
   components: {
-    BlockContent,
-    FitText
+    // BlockContent,
+    FitText,
+    BackWoo
   },
   data() {
     return {
@@ -119,20 +147,148 @@ main {
   font-size: 1rem;
 }
 
-.top {
-  width: 100vw;
-  display: block;
+.wrap-top {
+  padding-top: 17vh;
+  padding-bottom: 17vh;
   position: relative;
+  width: 90vw;
+  height: 18%;
+  margin: auto;
   text-align: center;
-  font-size: 4.7em;
+}
+
+.wrap-woo {
+  width: 90vw;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+/* first svg animation */
+
+.top-anim {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -30%);
+  width: 80vw;
+  height: 90vh;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  font-size: 6.7em;
   background: -webkit-linear-gradient(mediumslateblue, #8ca369);
-  opacity: 0.3;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-weight: 100;
-  padding-bottom: 32vh;
-  padding-top: 32vh;
 }
+
+.box-one,
+.box-two {
+  display: flex;
+  padding: 0 20px;
+}
+
+#d:hover,
+#d0:hover,
+#e:hover,
+#s:hover,
+#i:hover,
+#g:hover,
+#n:hover,
+#t:hover,
+#a:hover,
+#l:hover {
+  animation-name: wiggleWiggle;
+  animation-duration: 7s;
+  animation-iteration-count: infinite;
+}
+
+#d:hover {
+  animation-delay: 0s;
+  -webkit-text-fill-color: deepskyblue;
+  border: 1px solid blue;
+  transform: translateY(2px);
+}
+
+#e:hover {
+  animation-delay: 0.1s;
+  -webkit-text-fill-color: blue;
+  transform: translateY(3px);
+}
+
+#s:hover {
+  animation-delay: 0.2s;
+  border: 1px solid red;
+  -webkit-text-fill-color: mediumpurple;
+  transform: translateY(4px);
+}
+
+#i:hover {
+  animation-delay: 0.3s;
+  -webkit-text-fill-color: springgreen;
+  transform: translateY(5px);
+}
+
+#g:hover {
+  animation-delay: 0.4s;
+  -webkit-text-fill-color: deepskyblue;
+  transform: translateY(6px);
+}
+
+#n:hover {
+  animation-delay: 0.5s;
+  -webkit-text-fill-color: mediumpurple;
+  transform: translateY(1px);
+}
+
+#d0:hover {
+  animation-delay: 0.5s;
+  -webkit-text-fill-color: deepskyblue;
+  transform: translateY(-1px);
+}
+
+#t:hover {
+  animation-delay: 0.3s;
+  -webkit-text-fill-color: springgreen;
+  transform: translateY(-3px);
+}
+
+#a:hover {
+  animation-delay: 0.4s;
+  -webkit-text-fill-color: deepskyblue;
+  transform: translateY(-6px);
+}
+
+#l:hover {
+  animation-delay: 0.5s;
+  -webkit-text-fill-color: mediumpurple;
+  transform: translateY(-7px);
+}
+
+@keyframes wiggleWiggle {
+  20%,
+  100% {
+    transform: translate(0, 3px);
+    display: none;
+    opacity: 0.2;
+  }
+
+  0% {
+    transform: translate(0, 0px);
+    display: block;
+    opacity: 0.5;
+  }
+  10% {
+    transform: translate(0, 2px);
+    display: block;
+    opacity: 1;
+  }
+}
+
+/* end first animation */
 
 .list {
   display: flex;
@@ -206,5 +362,11 @@ article {
 
 .content-wrap {
   margin: 20px;
+}
+
+.cat-list {
+  display: inline-block;
+  padding-right: 9px;
+  padding: 4px;
 }
 </style>

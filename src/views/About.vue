@@ -2,10 +2,12 @@
   <div>
     <div class="loading" v-if="loading">Loading...</div>
     <div v-if="error" class="error">{{ error }}</div>
-    <div>
-      <h2 class="aTitle">{{ about.title }}</h2>
-      <block-content :blocks="about.body" />
-    </div>
+    <section>
+      <p class="block-content">
+        <block-content :blocks="about.body" />
+      </p>
+      <a :href="about.imageUrl" class="mail" target="_blank" rel="noopener">Deborah Ligorio</a>
+    </section>
   </div>
 </template>
 
@@ -20,7 +22,8 @@ const query = `*[_type == "about"] {
   _id,
   title,
   mainImage,
-  body
+  body,
+  imageUrl
 }[0]`;
 
 export default {
@@ -65,5 +68,26 @@ export default {
 main {
   display: flex;
   font-size: 1rem;
+}
+
+section {
+  width: 70vw;
+  margin: auto;
+}
+
+.block-content {
+  margin-top: 15vh;
+  font-size: 2rem;
+}
+
+@media screen and (max-width: 992px) {
+  section {
+    width: 80vw;
+    margin: auto;
+  }
+
+  .block-content {
+    font-size: 1.4rem;
+  }
 }
 </style>

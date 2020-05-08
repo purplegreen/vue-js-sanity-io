@@ -51,6 +51,8 @@ footer img {
   grid-template-columns: auto auto;
   z-index: 9;
   box-sizing: border-box;
+  margin-right: 3vw;
+  margin-left: 3vw;
 }
 
 nav {

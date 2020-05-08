@@ -35,6 +35,15 @@ export default {
       name: "body",
       title: "Body",
       type: "block-content"
+    },
+    {
+      name: "imageUrl",
+      title: "Image URL",
+      type: "url",
+      validation: Rule =>
+        Rule.uri({
+          scheme: ["http", "https", "mailto", "tel"]
+        })
     }
   ],
 

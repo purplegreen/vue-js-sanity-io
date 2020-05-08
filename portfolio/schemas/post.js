@@ -37,7 +37,7 @@ export default {
       type: "url",
       validation: Rule =>
         Rule.uri({
-          scheme: ["http", "https", "www"]
+          scheme: ["http", "https", "mailto", "tel"]
         })
     },
     {
@@ -68,6 +68,18 @@ export default {
       name: "favoriteColor",
       title: "Favorite color",
       type: "color"
+    }
+  ],
+  orderings: [
+    {
+      title: "Release Date, New",
+      name: "releaseDateAsc",
+      by: [{ field: "releaseDate", direction: "desc" }]
+    },
+    {
+      title: "Release Date, Old",
+      name: "releaseDateAsc",
+      by: [{ field: "releaseDate", direction: "asc" }]
     }
   ],
 
