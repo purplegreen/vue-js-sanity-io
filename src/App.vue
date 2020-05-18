@@ -10,7 +10,22 @@
       </h1>
     </div>
     <router-view />
-    <footer>...</footer>
+    <footer>
+      <div class="social-wrapper">
+        <a href="https://github.com/purplegreen" target="_blank" rel="noopener">
+          <BaseIcon id="social" name="github" />
+        </a>
+        <a href="https://www.instagram.com/deborah_ligorio/" target="_blank" rel="noopener">
+          <BaseIcon id="social" name="instagram" />
+        </a>
+        <a href="https://twitter.com/_De_Li" target="_blank" rel="noopener">
+          <BaseIcon id="social" name="twitter" />
+        </a>
+        <a href="https://deborahligorio.info/" target="_blank" rel="noopener">
+          <BaseIcon id="social" name="mysite" />
+        </a>
+      </div>
+    </footer>
   </div>
 </template>
 
@@ -136,5 +151,22 @@ body {
   height: auto;
   width: 100%;
   margin-right: 0.5rem;
+}
+
+#social > svg.icon {
+  width: 2.7rem;
+  height: auto;
+  padding: 0.7vw;
+}
+
+.social-wrapper {
+  display: flex;
+  width: 70vw;
+  margin: auto;
+  justify-content: center;
+}
+
+svg.icon.incon-colors {
+  fill: blue;
 }
 </style>

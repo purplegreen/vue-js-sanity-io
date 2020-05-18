@@ -4,31 +4,33 @@
 
     <div v-if="error" class="error">{{ error }}</div>
 
-    <div class="wrap-top">
-      <div class="wrap-woo">
-        <BackWoo class="back-woow" />
-      </div>
+    <kinesis-container class="kinesis-container">
+      <kinesis-element :strength="10">
+        <div class="kinesis-element">| | \</div>
+      </kinesis-element>
 
-      <div class="top-anim">
-        <div class="box-one">
-          <p id="d0">d</p>
-          <p id="i">i</p>
-          <p id="g">g</p>
-          <p id="i">i</p>
-          <p id="t">t</p>
-          <p id="a">a</p>
-          <p id="l">l</p>
+      <kinesis-element :strength="30">
+        <div class="top-anim">
+          <div class="box-one">
+            <p id="d0">d</p>
+            <p id="i">i</p>
+            <p id="g">g</p>
+            <p id="i">i</p>
+            <p id="t">t</p>
+            <p id="a">a</p>
+            <p id="l">l</p>
+          </div>
+          <div class="box-two">
+            <p id="d">d</p>
+            <p id="e">e</p>
+            <p id="s">s</p>
+            <p id="i">i</p>
+            <p id="g">g</p>
+            <p id="n">n</p>
+          </div>
         </div>
-        <div class="box-two">
-          <p id="d">d</p>
-          <p id="e">e</p>
-          <p id="s">s</p>
-          <p id="i">i</p>
-          <p id="g">g</p>
-          <p id="n">n</p>
-        </div>
-      </div>
-    </div>
+      </kinesis-element>
+    </kinesis-container>
 
     <ul class="list">
       <li v-for="post in posts" class="list__item" :key="post._id">
@@ -46,7 +48,7 @@
                 class="cat-list"
                 v-for="category in post.categories"
                 v-bind:key="category._id"
-              >{{ category.title }} |</h3>
+              >{{ category.title }}</h3>
               <!-- <block-content :blocks="post.body" /> -->
             </div>
           </router-link>
@@ -61,7 +63,6 @@ import sanity from "../sanity";
 import imageUrlBuilder from "@sanity/image-url";
 // import BlockContent from "sanity-blocks-vue-component";
 import FitText from "@/components/FitText";
-import BackWoo from "@/components/BackWoo";
 
 const imageBuilder = imageUrlBuilder(sanity);
 
@@ -86,8 +87,7 @@ export default {
   name: "Posts",
   components: {
     // BlockContent,
-    FitText,
-    BackWoo
+    FitText
   },
   data() {
     return {
@@ -169,11 +169,11 @@ main {
 
 .top-anim {
   position: absolute;
-  top: 50%;
+  top: 80%;
   left: 50%;
-  transform: translate(-50%, -30%);
+  transform: translate(-50%, -99%);
   width: 80vw;
-  height: 90vh;
+  height: 300px;
   margin: auto;
   display: flex;
   flex-wrap: wrap;
@@ -202,69 +202,69 @@ main {
 #a:hover,
 #l:hover {
   animation-name: wiggleWiggle;
-  animation-duration: 7s;
+  animation-duration: 0.7s;
   animation-iteration-count: infinite;
 }
 
 #d:hover {
   animation-delay: 0s;
-  -webkit-text-fill-color: deepskyblue;
-  border: 1px solid blue;
+  -webkit-text-fill-color: #dbe2f1;
+  border: 1px solid slategrey;
   transform: translateY(2px);
 }
 
 #e:hover {
   animation-delay: 0.1s;
-  -webkit-text-fill-color: blue;
+  -webkit-text-fill-color: #cee6f0;
   transform: translateY(3px);
 }
 
 #s:hover {
   animation-delay: 0.2s;
-  border: 1px solid red;
-  -webkit-text-fill-color: mediumpurple;
+  border: 1px solid rgb(14, 252, 65);
+  -webkit-text-fill-color: #cbe8f0;
   transform: translateY(4px);
 }
 
 #i:hover {
   animation-delay: 0.3s;
-  -webkit-text-fill-color: springgreen;
+  -webkit-text-fill-color: #bdeef0;
   transform: translateY(5px);
 }
 
 #g:hover {
   animation-delay: 0.4s;
-  -webkit-text-fill-color: deepskyblue;
+  -webkit-text-fill-color: #b5f1ef;
   transform: translateY(6px);
 }
 
 #n:hover {
   animation-delay: 0.5s;
-  -webkit-text-fill-color: mediumpurple;
+  -webkit-text-fill-color: #73eef9;
   transform: translateY(1px);
 }
 
 #d0:hover {
   animation-delay: 0.5s;
-  -webkit-text-fill-color: deepskyblue;
+  -webkit-text-fill-color: #b0f2dc;
   transform: translateY(-1px);
 }
 
 #t:hover {
   animation-delay: 0.3s;
-  -webkit-text-fill-color: springgreen;
+  -webkit-text-fill-color: #aef4c6;
   transform: translateY(-3px);
 }
 
 #a:hover {
   animation-delay: 0.4s;
-  -webkit-text-fill-color: deepskyblue;
+  -webkit-text-fill-color: #abf6b2;
   transform: translateY(-6px);
 }
 
 #l:hover {
   animation-delay: 0.5s;
-  -webkit-text-fill-color: mediumpurple;
+  -webkit-text-fill-color: #a9f79e;
   transform: translateY(-7px);
 }
 
@@ -342,7 +342,7 @@ article {
     background-color: hsla(300, 100%, 50, 0.2);
   }
   60% {
-    background-color: hsla(345, 100%, 50%, 0.4);
+    background-color: hsla(96, 86%, 81%, 0.4);
   }
   100% {
     background-color: hsla(195, 100%, 50%, 0.2);
@@ -368,5 +368,15 @@ article {
   display: inline-block;
   padding-right: 9px;
   padding: 4px;
+}
+
+.kinesis-container {
+  position: relative;
+  padding-bottom: 20vh;
+}
+
+.kinesis-element {
+  font-size: 30vw;
+  color: rgba(152, 170, 161, 0.3);
 }
 </style>

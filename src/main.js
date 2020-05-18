@@ -5,6 +5,7 @@ import BlockContent from "sanity-blocks-vue-component";
 
 import upperFirst from "lodash/upperFirst";
 import camelCase from "lodash/camelCase";
+import VueKinesis from "vue-kinesis";
 
 const requireComponent = require.context(
   "./components",
@@ -22,6 +23,7 @@ requireComponent.keys().forEach(fileName => {
   Vue.component(componentName, componentConfig.default || componentConfig);
 });
 Vue.component("block-content", BlockContent);
+Vue.use(VueKinesis);
 Vue.config.productionTip = false;
 
 new Vue({
