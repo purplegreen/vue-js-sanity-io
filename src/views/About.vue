@@ -6,7 +6,7 @@
       <p class="block-content">
         <block-content :blocks="about.body" />
       </p>
-      <a :href="about.imageUrl" class="mail" target="_blank" rel="noopener">Deborah Ligorio</a>
+      <a :href="about.imageUrl" class="block-content" target="_blank" rel="noopener">Deborah Ligorio</a>
     </section>
   </div>
 </template>
