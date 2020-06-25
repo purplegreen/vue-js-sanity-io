@@ -38,11 +38,11 @@
 import PostCard from "@/components/PostCard.vue";
 import sanity from "../sanity";
 // import BlockContent from "sanity-blocks-vue-component";
-const query = `*[_type == "posts" ] | order(_createdAt asc)
+const query = `*[_type == "post" ] | order(_createdAt asc)
 {
   _id,
   title,
-  posterImage,
+   posterImage,
   author,
   reference,
   publishedAt,
@@ -63,6 +63,7 @@ export default {
   },
   data() {
     return {
+      loading: true,
       posts: []
     };
   },

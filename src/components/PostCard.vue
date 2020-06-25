@@ -5,10 +5,7 @@
     <div v-if="error" class="error">{{ error }}</div>
     <router-link :to="{ name: 'post', params: { id: post._id } }">
       <article>
-        <div
-          class="picker"
-          :style="{ 'background-color': post.favoriteColor.hex }"
-        >
+        <div class="picker" :style="{ 'background-color': post.favoriteColor.hex }">
           <FitText class="theTitle" v-html="post.title" />
           <BaseIcon class="pattern" name="shade" />
         </div>
@@ -19,9 +16,7 @@
           class="cat-list"
           v-for="category in post.categories"
           v-bind:key="category._id"
-        >
-          {{ category.title }}
-        </h3>
+        >{{ category.title }}</h3>
         <!-- <block-content :blocks="post.body" /> -->
       </div>
     </router-link>
@@ -35,7 +30,7 @@ import imageUrlBuilder from "@sanity/image-url";
 
 const imageBuilder = imageUrlBuilder(sanity);
 
-const query = `*[_type == "post" ] | order(_createdAt asc)
+const query = `*[_type == "post" && _id == $id] 
 {
   _id,
   title,
@@ -50,19 +45,16 @@ const query = `*[_type == "post" ] | order(_createdAt asc)
   },
   body,
   favoriteColor
-}[0...50]`;
+}[0]`;
 
 export default {
-  props: {
-    event: Object,
-    components: {
-      FitText
-    }
+  name: "PostCard",
+  components: {
+    FitText
   },
   data() {
     return {
       loading: true,
-      posts: [],
       blocks: [],
       text: ""
     };
