@@ -91,7 +91,6 @@ export default {
       sanity.fetch(query).then(
         post => {
           this.loading = false;
-          console.log("post", post);
           this.post = post;
           // this.texts = this.post.title;
         },
