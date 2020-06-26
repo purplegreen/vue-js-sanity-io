@@ -55,6 +55,7 @@ export default {
   data() {
     return {
       loading: true,
+      post: [],
       blocks: [],
       text: ""
     };
@@ -88,9 +89,9 @@ export default {
       this.error = this.post = null;
       this.loading = true;
       sanity.fetch(query).then(
-        posts => {
+        post => {
           this.loading = false;
-          this.posts = posts;
+          this.post = post;
           // this.texts = this.post.title;
         },
         error => {
