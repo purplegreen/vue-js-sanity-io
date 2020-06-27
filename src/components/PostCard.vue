@@ -12,11 +12,11 @@
       </article>
 
       <div class="content-wrap">
-        <h3
+        <!-- <h3
           class="cat-list"
           v-for="category in post.categories"
           v-bind:key="category._id"
-        >{{ category.title }}</h3>
+        >{{ category.title }}</h3>-->
         <!-- <block-content :blocks="post.body" /> -->
       </div>
     </router-link>
@@ -24,28 +24,28 @@
 </template>
 <script>
 import FitText from "@/components/FitText";
-import sanity from "../sanity";
-import imageUrlBuilder from "@sanity/image-url";
+// import sanity from "../sanity";
+// import imageUrlBuilder from "@sanity/image-url";
 // import BlockContent from "sanity-blocks-vue-component";
 
-const imageBuilder = imageUrlBuilder(sanity);
+// const imageBuilder = imageUrlBuilder(sanity);
 
-const query = `*[_type == "post" && _id == $id] 
-{
-  _id,
-  title,
-  posterImage,
-  author,
-  reference,
-  publishedAt,
-  "categories": categories[]->{
-    _id,
-    description,
-    title
-  },
-  body,
-  favoriteColor
-}[0]`;
+// const query = `*[_type == "post" && _id == $id]
+// {
+//   _id,
+//   title,
+//   posterImage,
+//   author,
+//   reference,
+//   publishedAt,
+//   "categories": categories[]->{
+//     _id,
+//     description,
+//     title
+//   },
+//   body,
+//   favoriteColor
+// }[0]`;
 
 export default {
   props: {
@@ -65,12 +65,12 @@ export default {
       text: ""
     };
   },
-  created() {
-    this.fetchData();
-  },
-  watch: {
-    $route: "fetchData"
-  },
+  // created() {
+  //   this.fetchData();
+  // },
+  // watch: {
+  //   $route: "fetchData"
+  // },
   mounted() {
     const titles = ["{{ post.title }}"];
 
@@ -87,24 +87,23 @@ export default {
     });
   },
   methods: {
-    imageUrlFor(source) {
-      return imageBuilder.image(source);
-    },
-    fetchData() {
-      this.error = this.post = null;
-      this.loading = true;
-      sanity.fetch(query).then(
-        post => {
-          this.loading = false;
-          this.post = post;
-          // this.texts = this.post.title;
-        },
-        error => {
-          this.error = error;
-        }
-      );
-    }
+    // imageUrlFor(source) {
+    //   return imageBuilder.image(source);
   }
+  // fetchData() {
+  //   this.error = this.post = null;
+  //   this.loading = true;
+  //   sanity.fetch(query, { id: this.post.id });
+  // post => {
+  //   this.loading = false;
+  // this.post = post;
+  // this.texts = this.post.title;
+  // },
+  // error => {
+  //   this.error = error;
+  // };
+  // }
+  // }
 };
 </script>
 <style>

@@ -29,7 +29,7 @@
     </kinesis-container>
 
     <ul class="list">
-      <PostCard v-for="post in posts" class="list__item" :key="post._id" :post="post" />
+      <PostCard v-for="post in posts" class="list__item" :key="post._id" v-bind:post="post" />
     </ul>
   </main>
 </template>
