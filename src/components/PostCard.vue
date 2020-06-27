@@ -48,6 +48,12 @@ const query = `*[_type == "post" && _id == $id]
 }[0]`;
 
 export default {
+  props: {
+    post: {
+      type: Object,
+      required: true
+    }
+  },
   name: "PostCard",
   components: {
     FitText
@@ -55,7 +61,6 @@ export default {
   data() {
     return {
       loading: true,
-      post: [],
       blocks: [],
       text: ""
     };
